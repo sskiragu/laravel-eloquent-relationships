@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Author;
 
-class PostController extends Controller 
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //show all post
-        return Post::all();
+        //
+        return Author::all();
     }
 
     /**
@@ -27,7 +27,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-        return Post::create($request->all());
+        return Author::create($request->all());
     }
 
     /**
@@ -39,8 +39,7 @@ class PostController extends Controller
     public function show($id)
     {
         //
-        // return Post::find($id)->post_content;
-        return  Post::find($id)->author;
+        return Author::find($id)->post()->get();
     }
 
     /**
@@ -53,9 +52,6 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $post = Post::find($id);
-        $post->update($request->all());
-        return $post;
     }
 
     /**
@@ -67,6 +63,5 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-        return Post::destroy($id);
     }
 }
